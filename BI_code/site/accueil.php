@@ -1,0 +1,4 @@
+<!--
+Titre : Page d'accueil
+
+-->
