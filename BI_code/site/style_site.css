@@ -1,0 +1,134 @@
+/* Style général du corps */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Style de l'en-tête */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Style du logo */
+header img {
+    max-width: 150px;
+}
+
+/* Style de la barre de navigation */
+nav#navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style des éléments de la liste de la barre de navigation */
+nav#navbar ul li {
+    margin: 0 15px;
+}
+
+/* Style des liens de la barre de navigation */
+nav#navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Style du contenu principal */
+main {
+    padding: 20px;
+}
+
+/* Style des sections */
+section {
+    margin-bottom: 40px;
+}
+
+/* Style des sections Introduction et Appel à l'action */
+.intro, .cta {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des titres des sections Introduction et Appel à l'action */
+.intro h1, .cta h2 {
+    margin-top: 0;
+}
+
+/* Style des sections Présentation, Pourquoi choisir, Fonctionnalités et À propos */
+#presentation, .why-choose, #features, #apropos {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des statistiques et avantages de la section Pourquoi choisir */
+.why-choose .statistics, .why-choose .advantages {
+    margin-bottom: 20px;
+}
+
+/* Style du titre des statistiques de la section Pourquoi choisir */
+.why-choose .statistics h3 {
+    font-size: 2em;
+    color: #e67e22;
+}
+
+/* Style de la liste des avantages de la section Pourquoi choisir */
+.why-choose .advantages ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Style des éléments de la liste des avantages de la section Pourquoi choisir */
+.why-choose .advantages ul li {
+    margin-bottom: 10px;
+}
+
+/* Style du conteneur des fonctionnalités */
+#features .features-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Style des éléments des fonctionnalités */
+#features .feature-item {
+    flex: 1 1 calc(33.333% - 20px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style du texte en gras des éléments des fonctionnalités */
+#features .feature-item strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Style des paragraphes de la section À propos */
+#apropos p {
+    margin-bottom: 10px;
+}
+
+/* Style du pied de page */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+}
