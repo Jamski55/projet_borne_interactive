@@ -26,19 +26,7 @@ $isAdmin = isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin';
         <img src="../ressource/logo_BI" alt="logo Borne Interactive" id="logo">
 
         <!-- Barre de navigation -->
-        <nav id="navbar">
-            <ul>
-                <li><a href="accueil.php">Accueil</a></li>
-                <?php if ($isAdmin): ?>
-                    <li><a href="admin.php">Admin</a></li>
-                <?php else: ?>
-                    <li><a href="utilisateur.php">Utilisateur</a></li>
-                <?php endif; ?>
-                <li><a href="liste_jeu.php">Jeux</a></li>
-                <li><a href="infos.php">Informations</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </nav>
+        <?php include 'navbar.php'; ?>
     </header>
 
     <main>
