@@ -15,21 +15,17 @@ Objectif : Offrir une assistance et recueillir des retours.
 <body>
     
     <header>
-        
-        <!-- Logo -->
-        <img src="../ressource/logo_BI" alt="logo Borne Interactive" id="logo">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="../ressource/logo_BI" alt="logo Borne Interactive" id="logo">
+            </div>
 
-        <!-- Barre de navigation -->
-        <nav id="navbar">
-            <ul>
-                <li><a href="accueil.php">Accueil</a></li>
-                <li><a href="connexion.php">Connexion</a></li>
-                <li><a href="liste_jeu.php">Jeux</a></li>
-                <li><a href="infos.php">Informations</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </nav>
-
+            <!-- Barre de navigation -->
+            <div class="navbar-container">
+                <?php include 'navbar.php'; ?>
+            </div>
+        </div>
     </header>
 
     <main>

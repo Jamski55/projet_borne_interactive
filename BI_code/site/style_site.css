@@ -12,7 +12,15 @@ header {
     background-color: #333;
     color: #fff;
     padding: 10px 0;
-    text-align: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* Style du logo */
@@ -131,4 +139,55 @@ footer {
     padding: 10px 0;
     width: 100%;
     bottom: 0;
+}
+
+/* Style des formulaires de connexion et d'inscription */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Style des labels des formulaires */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style des champs de saisie des formulaires */
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style des boutons des formulaires */
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style des boutons d'accès à la page d'inscription */
+#inscription-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#inscription-button a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
 }

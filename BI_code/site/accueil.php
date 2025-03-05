@@ -19,12 +19,17 @@ include '../cox_bdd.php';
 <body>
     
     <header>
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="../ressource/logo_BI" alt="logo Borne Interactive" id="logo">
+            </div>
 
-        <!-- Logo -->
-        <img src="../ressource/logo_BI" alt="logo Borne Interactive" id="logo">
-
-        <!-- Barre de navigation -->
-        <?php include 'navbar.php'; ?>
+            <!-- Barre de navigation -->
+            <div class="navbar-container">
+                <?php include 'navbar.php'; ?>
+            </div>
+        </div>
     </header>
 
     <main>
