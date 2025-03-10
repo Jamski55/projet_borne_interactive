@@ -1,11 +1,13 @@
 <!--
-Titre : Page d'accueil non connecté
-Contenu : Présentation générale, accès aux autre pages(connexion, liste_jeu, infos, contact), appels à l'action (ex. : « Jouez maintenant ! » ou « Découvrez nos bornes interactives »).
+Titre : Page d'accueil connecter
+Contenu : Présentation générale, accès aux autre pages (utilisateur, liste_jeu, infos, contact), appels à l'action (ex. : « Jouez maintenant ! » ou « Découvrez nos bornes interactives »).
 Objectif : Attirer l'attention et guider l'utilisateur vers le jeu ou vers plus d'informations.
 -->
 
 <?php
 include '../cox_bdd.php';
+session_start();
+$isAdmin = isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin';
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +45,7 @@ include '../cox_bdd.php';
         </section>
 
         <!-- Section présentation -->
-        <section id = "presentation">
+        <section id="presentation">
             <h1>CielPlay</h1>
             <p>Vous trouverez ici des informations sur nos jeux, nos bornes interactives et nos services.</p>
             <p>Vous pouvez jouer à nos jeux en ligne ou vous rendre dans l'un de nos points de vente pour jouer sur nos bornes interactives.</p>
