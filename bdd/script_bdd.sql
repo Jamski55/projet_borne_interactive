@@ -1,8 +1,13 @@
-/* Création de la base de données BI et des tables associées */
+/* 
+Titre : Script de création de la base de données BI
+Description : Ce script crée la base de données BI, les tables associées, les contraintes, et insère des données initiales pour les tests.
+*/
+
+-- Création de la base de données BI
 CREATE DATABASE IF NOT EXISTS BI;
 USE BI;
 
-/* Suppression des tables dans un ordre sécurisé pour éviter les conflits de clés étrangères*/
+-- Suppression des tables dans un ordre sécurisé pour éviter les conflits de clés étrangères
 DROP TABLE IF EXISTS PARTICIPATION;
 DROP TABLE IF EXISTS BORNE;
 DROP TABLE IF EXISTS CAPTEURS;
@@ -12,74 +17,74 @@ DROP TABLE IF EXISTS TYPE_GAIN;
 DROP TABLE IF EXISTS TYPE_UTILISATEUR;
 DROP TABLE IF EXISTS UTILISATEUR;
 
-/* Création de la table UTILISATEUR */
+-- Création de la table UTILISATEUR
 CREATE TABLE UTILISATEUR (
     ID_UTILISATEUR       INT NOT NULL,
     ID_TYPE_UTILISATEUR  INT NOT NULL,
     NOM_UTILISATEUR      CHAR(20) NULL,
     PRENOM_UTILISATEUR   CHAR(20) NULL,
     EMAIL_UTILISATEUR    VARCHAR(30) NULL,
-    MDP_UTILISATEUR      VARCHAR(20) NULL, 
+    MDP_UTILISATEUR      VARCHAR(20) NULL,
     PRIMARY KEY (ID_UTILISATEUR)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table TYPE_UTILISATEUR */
+-- Création de la table TYPE_UTILISATEUR
 CREATE TABLE TYPE_UTILISATEUR (
     ID_TYPE_UTILISATEUR      INT NOT NULL,
     LIBELLE_TYPE_UTILISATEUR CHAR(20) NULL,
     PRIMARY KEY (ID_TYPE_UTILISATEUR)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table JEUX */
+-- Création de la table JEUX
 CREATE TABLE JEUX (
     ID_JEU      INT NOT NULL,
     NOM_JEU     CHAR(20) NULL,
     DESCRIPTION VARCHAR(255) NULL,
     PRIMARY KEY (ID_JEU)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table TYPE_GAIN */
+-- Création de la table TYPE_GAIN
 CREATE TABLE TYPE_GAIN (
     ID_TYPE_GAIN      INT NOT NULL,
     LIBELLE_TYPE_GAIN CHAR(20) NULL,
     PRIMARY KEY (ID_TYPE_GAIN)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table PARTICIPATION */
+-- Création de la table PARTICIPATION
 CREATE TABLE PARTICIPATION (
     ID_JEU                 INT NOT NULL,
     ID_TYPE_GAIN           INT NOT NULL,
     RESULTAT_PARTICIPATION SMALLINT NULL,
     PRIMARY KEY (ID_JEU, ID_TYPE_GAIN)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table BORNE */
+-- Création de la table BORNE
 CREATE TABLE BORNE (
     ID_BORNE        INT NOT NULL,
-    ID_UTILISATEUR  INT NULL, 
+    ID_UTILISATEUR  INT NULL,
     ID_CAPTEUR      INT NULL,
     ID_JEU          INT NULL,
     ETAT            CHAR(20) NULL,
     PRIMARY KEY (ID_BORNE)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table CAPTEURS */
+-- Création de la table CAPTEURS
 CREATE TABLE CAPTEURS (
     ID_CAPTEUR         INT NOT NULL,
     ID_TYPE_CAPTEUR    INT NOT NULL,
     VALEUR1            CHAR(20) NULL,
     VALEUR2            CHAR(20) NULL,
     PRIMARY KEY (ID_CAPTEUR)
-) ENGINE=InnoDB;
+);
 
-/* Création de la table TYPE_CAPTEUR */
+-- Création de la table TYPE_CAPTEUR
 CREATE TABLE TYPE_CAPTEUR (
     ID_TYPE_CAPTEUR      INT NOT NULL,
     LIBELLE_TYPE_CAPTEUR CHAR(20) NULL,
     PRIMARY KEY (ID_TYPE_CAPTEUR)
-) ENGINE=InnoDB;
+);
 
-/* Ajout des index pour optimiser les requêtes */
+-- Ajout des index pour optimiser les requêtes
 CREATE INDEX PARTICIPATION_FK ON PARTICIPATION (ID_JEU);
 CREATE INDEX PARTICIPATION_TYPE_GAIN_FK ON PARTICIPATION (ID_TYPE_GAIN);
 
@@ -91,11 +96,11 @@ CREATE INDEX CAPTEURS_TYPE_CAPTEUR_FK ON CAPTEURS (ID_TYPE_CAPTEUR);
 
 CREATE INDEX UTILISATEUR_TYPE_UTILISATEUR_FK ON UTILISATEUR (ID_TYPE_UTILISATEUR);
 
-/* Ajout des contraintes de clés étrangères */
+-- Ajout des contraintes de clés étrangères
 ALTER TABLE UTILISATEUR
     ADD CONSTRAINT FK_UTILISAT_ASSOCIATI_TYPE_UTI 
     FOREIGN KEY (ID_TYPE_UTILISATEUR) REFERENCES TYPE_UTILISATEUR(ID_TYPE_UTILISATEUR)
-    ON UPDATE RESTRICT ON DELETE RESTRICT; # Vérifier si ces restrictions sont adaptées
+    ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 ALTER TABLE PARTICIPATION
     ADD CONSTRAINT FK_PARTICIPATION_TYPE_GAIN 
@@ -120,3 +125,53 @@ ALTER TABLE CAPTEURS
     ADD CONSTRAINT FK_CAPTEURS_TYPE_CAP 
     FOREIGN KEY (ID_TYPE_CAPTEUR) REFERENCES TYPE_CAPTEUR(ID_TYPE_CAPTEUR)
     ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+-- Insertion des données initiales pour TYPE_UTILISATEUR
+INSERT INTO TYPE_UTILISATEUR (ID_TYPE_UTILISATEUR, LIBELLE_TYPE_UTILISATEUR) VALUES
+(1, 'Client'),
+(2, 'Administrateur'),
+(3, 'Maintenance');
+
+-- Insertion des données initiales pour UTILISATEUR
+INSERT INTO UTILISATEUR (ID_UTILISATEUR, ID_TYPE_UTILISATEUR, NOM_UTILISATEUR, PRENOM_UTILISATEUR, EMAIL_UTILISATEUR, MDP_UTILISATEUR) VALUES
+(1, 1, 'DURAND', 'Alice', 'alice.durand@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'), -- "password"
+(2, 2, 'MARTIN', 'Bob', 'bob.martin@email.com', 'e99a18c428cb38d5f260853678922e03'),   -- "abc123"
+(3, 3, 'LEFEVRE', 'Claire', 'claire.lefevre@email.com', '25f9e794323b453885f5181f1b624d0b'), -- "123456789"
+(4, 1, 'LOPEZ', 'David', 'david.lopez@email.com', 'd8578edf8458ce06fbc5bb76a58c5ca4');     -- "qwerty"
+
+-- Insertion des données initiales pour TYPE_CAPTEUR
+INSERT INTO TYPE_CAPTEUR (ID_TYPE_CAPTEUR, LIBELLE_TYPE_CAPTEUR) VALUES
+(1, 'Capteur'),
+(2, 'Actionneur');
+
+-- Insertion des données initiales pour CAPTEURS
+INSERT INTO CAPTEURS (ID_CAPTEUR, ID_TYPE_CAPTEUR, VALEUR1, VALEUR2) VALUES
+(1, 1, 'Température', '25°C'),
+(2, 1, 'Humidité', '60%'),
+(3, 1, 'RFID', 'Tag123'),
+(4, 1, 'Couleur', 'Rouge'),
+(5, 2, 'Scanner', 'ON'),
+(6, 2, 'Imprimante', 'Prête'),
+(7, 1, 'Caméra', 'Active'),
+(8, 2, 'Levier', 'Inactif'),
+(9, 2, 'Lumière', 'Éteinte');
+
+-- Insertion des données initiales pour TYPE_GAIN
+INSERT INTO TYPE_GAIN (ID_TYPE_GAIN, LIBELLE_TYPE_GAIN) VALUES
+(1, 'Jackpot'),
+(2, 'Stylo'),
+(3, 'Perdu');
+
+-- Insertion des données initiales pour JEUX
+INSERT INTO JEUX (ID_JEU, NOM_JEU, DESCRIPTION) VALUES
+(1, 'Casino', 'Jeu de machine à sous où 3 symboles identiques rapportent un gain.'),
+(2, 'Roue', 'Jeu de roue de la chance avec divers gains aléatoires.');
+
+-- Insertion des données initiales pour PARTICIPATION
+INSERT INTO PARTICIPATION (ID_JEU, ID_TYPE_GAIN, RESULTAT_PARTICIPATION) VALUES
+(1, 1, 1),
+(1, 2, 0),
+(1, 3, 0),
+(2, 1, 1),
+(2, 2, 0),
+(2, 3, 0);
