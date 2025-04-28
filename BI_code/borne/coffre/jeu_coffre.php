@@ -8,47 +8,41 @@ Concept du jeu :
 --> 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Jeu coffre PlayCiel</title>
-        <link rel="stylesheet" href="style_coffre.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu coffre PlayCiel</title>
+    <link rel="stylesheet" href="style_coffre.css">
+</head>
+<body>
 
-    <body>
+    <header>
+        <!-- Ton header -->
+    </header>
 
-        <header>
-            <!-- Ton header -->
-        </header>
-
-        <main>
-
-            <h1>Choisis un coffre !</h1>
-            <div class="coffres">
-                <div class="coffre" data-index="0">
-                    <img class="coffre-img" src="../../ressource/chest_close.png" alt="Coffre">
-                </div>
-                <div class="coffre" data-index="1">
-                    <img class="coffre-img" src="../../ressource/chest_close.png" alt="Coffre">
-                </div>
-                <div class="coffre" data-index="2">
-                    <img class="coffre-img" src="../../ressource/chest_close.png" alt="Coffre">
-                </div>
+    <main>
+        <h1>Choisis un coffre !</h1>
+        <div class="coffres">
+            <div class="coffre" data-index="0">
+                <img class="coffre-img" src="../../ressource/chest_close.png" alt="Coffre">
             </div>
+            <div class="coffre" data-index="1">
+                <img class="coffre-img" src="../../ressource/chest_close.png" alt="Coffre">
+            </div>
+            <div class="coffre" data-index="2">
+                <img class="coffre-img" src="../../ressource/chest_close.png" alt="Coffre">
+            </div>
+        </div>
 
-            <p id="message"></p>
+        <!-- Conteneur pour afficher le lot qui sort du coffre -->
+        <div id="lotContainer"></div>
 
-            <!-- Conteneur pour l'image du lot -->
-            <div id="lotContainer"></div>
+        <script src="coffre.js"></script>
+    </main>
 
-            <script src="coffre.js"></script>
+    <footer>
+        <!-- Ton footer -->
+    </footer>
 
-        </main>
-
-        <footer>
-            <!-- Ton footer -->
-        </footer>
-
-    </body>
-
+</body>
 </html>

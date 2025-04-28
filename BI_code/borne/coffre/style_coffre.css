@@ -3,98 +3,27 @@ Titre: Style du coffre
 Description: Fichier de style pour le coffre
 */
 
-/* Style global pour le corps de la page */
+/* Style général */
 body {
+    margin: 0;
     text-align: center;
     font-family: Arial, sans-serif;
-    background-color: #ffff;
+    background-color: #ffffff;
     color: black;
 }
 
-/* Style pour le titre principal */
 h1 {
     margin-top: 20px;
 }
 
-/* Animation pour déplacer le coffre au centre */
-@keyframes move-to-center {
-    0% {
-        transform: translate(0, 0); /* Position initiale */
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1); /* Position finale au centre */
-    }
-}
-
-/* Animation pour faire trembler un élément */
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translateX(calc(-50% - 8px)) translateY(-50%) rotate(-5deg);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translateX(calc(-50% + 8px)) translateY(-50%) rotate(5deg);
-    }
-}
-
-/* Déplacer le coffre sélectionné au centre */
-.au-centre {
-    position: fixed;  /* Utiliser fixed pour garder le coffre dans la fenêtre visible */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);  /* Centrer le coffre exactement au milieu de l'écran */
-    z-index: 10;
-    transition: left 1s ease, top 1s ease;  /* Transition pour déplacer le coffre en douceur */
-}
-
-/* Faire trembler le coffre */
-.tremble {
-    animation: shake 0.5s ease-in-out 3; /* Tremblement pendant 0.5s */
-}
-
-/* Style pour les coffres ouverts */
-.ouvert {
-    background: url('../../ressource/chest_open.png') no-repeat center;
-    background-size: contain;
-    transition: background 1s ease-in-out; /* Transition plus longue pour rendre l'ouverture visible */
-}
-
-/* Faire disparaître le coffre sélectionné */
-.disparaitre-selection {
-    opacity: 0;
-    transform: scale(0.5);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    z-index: 0;
-}
-
-/* Style pour les lots (récompenses) */
-.lot {
-    position: absolute;
-    width: 50px;
-    height: auto;
-    opacity: 0;
-    transition: transform 1s ease-out, opacity 0.5s ease-in;
-}
-
-/* Afficher le lot avec une animation */
-.lot.afficher {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(5);
-    left: 50%;
-    top: 50%;
-    z-index: 20;
-}
-
+/* Coffres alignés */
 .coffres {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 80vh;
     gap: 20px;
+    position: relative;
 }
 
 .coffre {
@@ -102,6 +31,11 @@ h1 {
     height: 150px;
     position: relative;
     cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.coffre:hover {
+    transform: scale(1.1);
 }
 
 .coffre-img {
@@ -110,7 +44,71 @@ h1 {
     object-fit: contain;
 }
 
-/* Effet de survol pour agrandir légèrement le coffre */
-.coffre:hover {
-    transform: scale(1.1);
+/* Disparition des autres coffres */
+.disparaitre {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Coffre sélectionné au centre */
+.coffre-selected {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 0.8s ease, left 0.8s ease, transform 0.8s ease;
+    z-index: 10;
+}
+
+/* Tremblement */
+@keyframes tremblement {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-50%, -50%) rotate(5deg); }
+    50% { transform: translate(-50%, -50%) rotate(-5deg); }
+    75% { transform: translate(-50%, -50%) rotate(5deg); }
+}
+
+.tremble {
+    animation: tremblement 0.5s ease;
+}
+
+/* Ouverture du coffre */
+.ouvert img {
+    content: url('../../ressource/chest_open.png');
+}
+
+/* Lot (image du gain) */
+#lotContainer {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    pointer-events: none;
+}
+
+.lot {
+    width: 80px;
+    height: auto;
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 0.5s ease;
+    position: absolute;
+}
+
+.lot.afficher {
+    opacity: 1;
+    transform: scale(4);
+}
+
+
+#lotContainer img {
+    width: 80px;
+    height: auto;
+}
+
+/* Apparition progressive du lot */
+.afficher-lot {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 1;
 }
